@@ -1,0 +1,59 @@
+{
+    "name": "g8scope/drupal",
+    "version": "1.0.0",
+    "description": "Drupal 10/11 module for g8scope — auto-captures exceptions via an event subscriber and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "keywords": [
+        "drupal",
+        "drupal-module",
+        "g8scope",
+        "error-tracking",
+        "observability",
+        "sdk"
+    ],
+    "type": "drupal-module",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "g8scope/php": "*"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.0",
+        "laravel/pint": "^1.0",
+        "symfony/http-kernel": "^6.4|^7.0"
+    },
+    "suggest": {
+        "drupal/core": "^10 || ^11"
+    },
+    "autoload": {
+        "psr-4": {
+            "G8Scope\\Drupal\\": "src/",
+            "Drupal\\g8scope\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "G8Scope\\Drupal\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/pest",
+        "lint": "vendor/bin/pint"
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../g8scope-php",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

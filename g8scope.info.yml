@@ -1,0 +1,6 @@
+name: g8scope
+type: module
+description: 'Auto-captures unhandled exceptions and ships them to the g8scope ingest API. Thin adapter over the g8scope/php runtime SDK.'
+core_version_requirement: ^10 || ^11
+package: Monitoring
+configure: g8scope.settings
