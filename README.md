@@ -2,7 +2,7 @@
 
 A **thin** Drupal 10/11 module that auto-captures unhandled exceptions and ships
 them to the [g8scope](https://scope.g8suite.com) ingest API. It is a light
-adapter over the runtime PHP SDK, [`g8scope/php`](../bliptrace-php) — all the
+adapter over the runtime PHP SDK, [`bliptrace/php`](../bliptrace-php) — all the
 envelope building, scrubbing and transport live there; this module only wires
 Drupal's exception event into the SDK.
 
@@ -21,7 +21,7 @@ exception with request context, and hands it to the SDK client.
 2. `ExceptionSubscriber` forwards it (at a low priority, so it only observes) to
    the `g8scope.reporter` service.
 3. The `Reporter` builds request context (method, URL, headers — with
-   `Authorization` and `Cookie` stripped), then asks the `g8scope/php` client to
+   `Authorization` and `Cookie` stripped), then asks the `bliptrace/php` client to
    build, scrub and ship the envelope.
 4. The envelope is `POST`ed to `{endpoint}/v1/ingest` with an `X-Ingest-Key`
    header.
@@ -35,7 +35,7 @@ exception with request context, and hands it to the SDK client.
 Add the module via Composer:
 
 ```bash
-composer require g8scope/drupal
+composer require bliptrace/drupal
 ```
 
 Then enable it:
@@ -93,7 +93,7 @@ When `enabled` is `false` or `key` is empty, nothing is ever sent.
 
 ## Development & tests
 
-The test suite depends **only** on `g8scope/php` (plus `symfony/http-kernel` to
+The test suite depends **only** on `bliptrace/php` (plus `symfony/http-kernel` to
 load the subscriber) — it never pulls in `drupal/core`. The testable pieces
 (`Reporter`, `RequestContext`, `G8ScopeSettings`, `ReporterFactory`) are
 framework-light and live under the `G8Scope\Drupal\` namespace; the Drupal

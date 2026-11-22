@@ -1,7 +1,7 @@
 {
-    "name": "g8scope/drupal",
+    "name": "bliptrace/drupal",
     "version": "1.0.0",
-    "description": "Drupal 10/11 module for g8scope — auto-captures exceptions via an event subscriber and ships them to the ingest API. Thin adapter over g8scope/php.",
+    "description": "Drupal 10/11 module for g8scope — auto-captures exceptions via an event subscriber and ships them to the ingest API. Thin adapter over bliptrace/php.",
     "keywords": [
         "drupal",
         "drupal-module",
@@ -14,7 +14,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "g8scope/php": "*"
+        "bliptrace/php": "^1.1"
     },
     "require-dev": {
         "pestphp/pest": "^3.0",
