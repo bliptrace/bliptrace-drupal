@@ -54,10 +54,10 @@ key from the environment so it never lands in version control:
 // settings.php
 $settings['g8scope'] = [
   'enabled'     => TRUE,
-  'key'         => getenv('G8SCOPE_KEY'),          // ingest key (required)
+  'key'         => \G8Scope\Php\Env::get('KEY'),   // BLIPTRACE_KEY (required)
   'endpoint'    => 'https://ingest.scope.g8suite.com',
-  'environment' => getenv('G8SCOPE_ENV') ?: 'production',
-  'release'     => getenv('G8SCOPE_RELEASE') ?: NULL,
+  'environment' => \G8Scope\Php\Env::get('ENVIRONMENT', 'production'),
+  'release'     => \G8Scope\Php\Env::get('RELEASE'),
   'timeout'     => 3,
   // Optional shaping:
   'max_frames'        => 30,
@@ -66,6 +66,10 @@ $settings['g8scope'] = [
   'scrub_keys'        => ['password', 'token', 'secret'],
 ];
 ```
+
+> **Env names:** `G8Scope\Php\Env::get('KEY')` (from `bliptrace/php` ^1.2) reads `BLIPTRACE_KEY` and
+> falls back to the deprecated `G8SCOPE_KEY` when it is unset (fallback removed in 2.0). Rename your
+> variables to `BLIPTRACE_*`; `G8SCOPE_ENV` becomes `BLIPTRACE_ENVIRONMENT`.
 
 | Setting             | Maps to `G8Scope\Php\Config` | Default                              |
 | ------------------- | ---------------------------- | ------------------------------------ |

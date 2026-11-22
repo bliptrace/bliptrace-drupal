@@ -13,7 +13,7 @@ use G8Scope\Php\Config;
  *
  *   $settings['g8scope'] = [
  *     'enabled'     => TRUE,
- *     'key'         => getenv('G8SCOPE_KEY'),
+ *     'key'         => \G8Scope\Php\Env::get('KEY'), // BLIPTRACE_KEY, else G8SCOPE_KEY
  *     'endpoint'    => 'https://ingest.scope.g8suite.com',
  *     'environment' => 'production',
  *     'release'     => '1.0.0',
