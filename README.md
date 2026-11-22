@@ -2,7 +2,7 @@
 
 A **thin** Drupal 10/11 module that auto-captures unhandled exceptions and ships
 them to the [g8scope](https://scope.g8suite.com) ingest API. It is a light
-adapter over the runtime PHP SDK, [`g8scope/php`](../g8scope-php) — all the
+adapter over the runtime PHP SDK, [`g8scope/php`](../bliptrace-php) — all the
 envelope building, scrubbing and transport live there; this module only wires
 Drupal's exception event into the SDK.
 
