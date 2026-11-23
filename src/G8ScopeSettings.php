@@ -14,7 +14,7 @@ use G8Scope\Php\Config;
  *   $settings['g8scope'] = [
  *     'enabled'     => TRUE,
  *     'key'         => \G8Scope\Php\Env::get('KEY'), // BLIPTRACE_KEY, else G8SCOPE_KEY
- *     'endpoint'    => 'https://ingest.scope.g8suite.com',
+ *     'endpoint'    => 'https://ingest.bliptrace.com/v1/ingest',
  *     'environment' => 'production',
  *     'release'     => '1.0.0',
  *   ];
@@ -36,7 +36,7 @@ final class G8ScopeSettings
     {
         return new Config(
             key: self::stringOrNull($settings['key'] ?? null),
-            endpoint: (string) ($settings['endpoint'] ?? 'https://ingest.scope.g8suite.com'),
+            endpoint: (string) ($settings['endpoint'] ?? 'https://ingest.bliptrace.com/v1/ingest'),
             environment: (string) ($settings['environment'] ?? 'production'),
             release: self::stringOrNull($settings['release'] ?? null),
             timeout: (int) ($settings['timeout'] ?? 3),

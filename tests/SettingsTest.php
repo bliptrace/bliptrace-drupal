@@ -34,7 +34,7 @@ it('applies sensible defaults for an empty settings array', function (): void {
     expect($config->key)->toBeNull()
         ->and($config->enabled)->toBeTrue()
         ->and($config->environment)->toBe('production')
-        ->and($config->endpoint)->toBe('https://ingest.scope.g8suite.com');
+        ->and($config->endpoint)->toBe('https://ingest.bliptrace.com/v1/ingest');
 });
 
 it('builds a Reporter from a settings array', function (): void {

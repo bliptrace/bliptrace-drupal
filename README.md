@@ -1,7 +1,7 @@
 # g8scope for Drupal
 
 A **thin** Drupal 10/11 module that auto-captures unhandled exceptions and ships
-them to the [g8scope](https://scope.g8suite.com) ingest API. It is a light
+them to the [Bliptrace](https://bliptrace.com) ingest API. It is a light
 adapter over the runtime PHP SDK, [`bliptrace/php`](../bliptrace-php) — all the
 envelope building, scrubbing and transport live there; this module only wires
 Drupal's exception event into the SDK.
@@ -23,7 +23,7 @@ exception with request context, and hands it to the SDK client.
 3. The `Reporter` builds request context (method, URL, headers — with
    `Authorization` and `Cookie` stripped), then asks the `bliptrace/php` client to
    build, scrub and ship the envelope.
-4. The envelope is `POST`ed to `{endpoint}/v1/ingest` with an `X-Ingest-Key`
+4. The envelope is `POST`ed to `endpoint` (`/v1/ingest` is appended to a bare base URL) with an `X-Ingest-Key`
    header.
 
 > **The project is never sent in the payload.** It is resolved **server-side**
@@ -55,7 +55,7 @@ key from the environment so it never lands in version control:
 $settings['g8scope'] = [
   'enabled'     => TRUE,
   'key'         => \G8Scope\Php\Env::get('KEY'),   // BLIPTRACE_KEY (required)
-  'endpoint'    => 'https://ingest.scope.g8suite.com',
+  'endpoint'    => 'https://ingest.bliptrace.com/v1/ingest',
   'environment' => \G8Scope\Php\Env::get('ENVIRONMENT', 'production'),
   'release'     => \G8Scope\Php\Env::get('RELEASE'),
   'timeout'     => 3,
@@ -75,7 +75,7 @@ $settings['g8scope'] = [
 | ------------------- | ---------------------------- | ------------------------------------ |
 | `enabled`           | `enabled`                    | `true`                               |
 | `key`               | `key`                        | `null` (capture is off without it)   |
-| `endpoint`          | `endpoint`                   | `https://ingest.scope.g8suite.com`   |
+| `endpoint`          | `endpoint`                   | `https://ingest.bliptrace.com/v1/ingest`   |
 | `environment`       | `environment`                | `production`                         |
 | `release`           | `release`                    | `null`                               |
 | `timeout`           | `timeout`                    | `3`                                  |
