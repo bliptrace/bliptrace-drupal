@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Drupal\g8scope\EventSubscriber;
+namespace Drupal\bliptrace\EventSubscriber;
 
-use G8Scope\Drupal\Reporter;
+use Bliptrace\Drupal\Reporter;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
@@ -12,14 +12,14 @@ use Throwable;
 
 /**
  * Subscribes to the kernel EXCEPTION event and forwards the Throwable to the
- * g8scope Reporter. Drupal is Symfony-based, so this is the natural hook for
+ * Bliptrace Reporter. Drupal is Symfony-based, so this is the natural hook for
  * capturing unhandled exceptions across the whole site.
  *
  * NEVER breaks the site: the listener swallows every error from the capture
  * path and NEVER stops propagation or alters the response — Drupal's own error
  * handling continues exactly as before.
  *
- * Wired via g8scope.services.yml (tagged `event_subscriber`). Loaded only inside
+ * Wired via bliptrace.services.yml (tagged `event_subscriber`). Loaded only inside
  * a running Drupal/Symfony kernel; the Symfony classes it references are present
  * there (and in this package's dev dependencies for the test loader).
  */

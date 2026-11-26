@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-use G8Scope\Drupal\G8ScopeSettings;
-use G8Scope\Drupal\Reporter;
-use G8Scope\Drupal\ReporterFactory;
+use Bliptrace\Drupal\BliptraceSettings;
+use Bliptrace\Drupal\Reporter;
+use Bliptrace\Drupal\ReporterFactory;
 
 it('maps a settings array to a Config', function (): void {
-    $config = G8ScopeSettings::toConfig([
+    $config = BliptraceSettings::toConfig([
         'enabled' => true,
         'key' => 'abc',
         'endpoint' => 'https://ingest.test',
@@ -25,11 +25,11 @@ it('maps a settings array to a Config', function (): void {
         ->and($config->timeout)->toBe(5)
         ->and($config->scrubKeys)->toBe(['password', 'token'])
         ->and($config->ignoreExceptions)->toBe([LogicException::class])
-        ->and($config->sdkName)->toBe('g8scope-drupal');
+        ->and($config->sdkName)->toBe('bliptrace-drupal');
 });
 
 it('applies sensible defaults for an empty settings array', function (): void {
-    $config = G8ScopeSettings::toConfig([]);
+    $config = BliptraceSettings::toConfig([]);
 
     expect($config->key)->toBeNull()
         ->and($config->enabled)->toBeTrue()
@@ -43,12 +43,12 @@ it('builds a Reporter from a settings array', function (): void {
     expect($reporter)->toBeInstanceOf(Reporter::class);
 });
 
-it('reads g8scope from a Drupal-style settings object', function (): void {
+it('reads bliptrace from a Drupal-style settings object', function (): void {
     $settings = new class
     {
         public function get(string $name, $default = null)
         {
-            return $name === 'g8scope'
+            return $name === 'bliptrace'
                 ? ['key' => 'from-drupal', 'endpoint' => 'http://api.test']
                 : $default;
         }

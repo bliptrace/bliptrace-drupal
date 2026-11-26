@@ -2,18 +2,18 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Drupal;
+namespace Bliptrace\Drupal;
 
-use G8Scope\Php\Config;
+use Bliptrace\Php\Config;
 
 /**
  * Maps Drupal settings (or environment) to a runtime PHP {@see Config}.
  *
  * In a live Drupal site these values come from settings.php / config, e.g.:
  *
- *   $settings['g8scope'] = [
+ *   $settings['bliptrace'] = [
  *     'enabled'     => TRUE,
- *     'key'         => \G8Scope\Php\Env::get('KEY'), // BLIPTRACE_KEY, else G8SCOPE_KEY
+ *     'key'         => \Bliptrace\Php\Env::get('KEY'), // BLIPTRACE_KEY
  *     'endpoint'    => 'https://ingest.bliptrace.com/v1/ingest',
  *     'environment' => 'production',
  *     'release'     => '1.0.0',
@@ -23,9 +23,9 @@ use G8Scope\Php\Config;
  * key. Only the key, endpoint and shaping options belong here.
  *
  * This class is framework-light: pass an array and get a Config back. The Drupal
- * service wiring (g8scope.services.yml) is responsible for sourcing that array.
+ * service wiring (bliptrace.services.yml) is responsible for sourcing that array.
  */
-final class G8ScopeSettings
+final class BliptraceSettings
 {
     /**
      * Build a Config from a plain settings array.
@@ -46,7 +46,7 @@ final class G8ScopeSettings
             scrubKeys: self::stringList($settings['scrub_keys'] ?? $settings['scrubKeys'] ?? []),
             basePath: (string) ($settings['base_path'] ?? $settings['basePath'] ?? ''),
             enabled: (bool) ($settings['enabled'] ?? true),
-            sdkName: 'g8scope-drupal',
+            sdkName: 'bliptrace-drupal',
             sdkVersion: '1.0.0',
         );
     }

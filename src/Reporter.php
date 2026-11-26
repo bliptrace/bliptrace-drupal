@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Drupal;
+namespace Bliptrace\Drupal;
 
-use G8Scope\Drupal\Context\RequestContext;
-use G8Scope\Php\Client;
+use Bliptrace\Drupal\Context\RequestContext;
+use Bliptrace\Php\Client;
 use Throwable;
 
 /**

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Drupal\Context;
+namespace Bliptrace\Drupal\Context;
 
 /**
  * Builds the envelope context from an HTTP request.

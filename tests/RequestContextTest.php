@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use G8Scope\Drupal\Context\RequestContext;
+use Bliptrace\Drupal\Context\RequestContext;
 use Symfony\Component\HttpFoundation\Request;
 
 it('strips authorization and cookie headers and yields method/url', function (): void {

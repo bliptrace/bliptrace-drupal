@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace G8Scope\Drupal;
+namespace Bliptrace\Drupal;
 
-use G8Scope\Php\Client;
+use Bliptrace\Php\Client;
 
 /**
  * Builds a {@see Reporter} from a settings array.
  *
- * Used by the Drupal container as a service factory (see g8scope.services.yml):
- * Drupal's `settings` service yields the `g8scope` array, this turns it into a
+ * Used by the Drupal container as a service factory (see bliptrace.services.yml):
+ * Drupal's `settings` service yields the `bliptrace` array, this turns it into a
  * configured Client + Reporter. Framework-light, so it is unit-testable too.
  */
 final class ReporterFactory
@@ -20,7 +20,7 @@ final class ReporterFactory
      */
     public static function create(array $settings): Reporter
     {
-        $config = G8ScopeSettings::toConfig($settings);
+        $config = BliptraceSettings::toConfig($settings);
 
         return new Reporter(new Client($config));
     }
@@ -35,7 +35,7 @@ final class ReporterFactory
     {
         $g8 = [];
         if (is_object($settings) && method_exists($settings, 'get')) {
-            $g8 = $settings->get('g8scope', []);
+            $g8 = $settings->get('bliptrace', []);
         }
 
         return self::create(is_array($g8) ? $g8 : []);

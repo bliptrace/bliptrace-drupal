@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use Drupal\g8scope\EventSubscriber\ExceptionSubscriber;
-use G8Scope\Drupal\Reporter;
-use G8Scope\Php\Client;
-use G8Scope\Php\Config;
+use Drupal\bliptrace\EventSubscriber\ExceptionSubscriber;
+use Bliptrace\Drupal\Reporter;
+use Bliptrace\Php\Client;
+use Bliptrace\Php\Config;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;

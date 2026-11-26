@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-use G8Scope\Drupal\Reporter;
-use G8Scope\Php\Client;
-use G8Scope\Php\Config;
-use G8Scope\Php\Transport\Transport;
+use Bliptrace\Drupal\Reporter;
+use Bliptrace\Php\Client;
+use Bliptrace\Php\Config;
+use Bliptrace\Php\Transport\Transport;
 use Symfony\Component\HttpFoundation\Request;
 
 function reporterWith(FakeTransport $t, array $overrides = []): Reporter
@@ -16,7 +16,7 @@ function reporterWith(FakeTransport $t, array $overrides = []): Reporter
         basePath: dirname(__DIR__),
         ignoreExceptions: $overrides['ignoreExceptions'] ?? [],
         enabled: $overrides['enabled'] ?? true,
-        sdkName: 'g8scope-drupal',
+        sdkName: 'bliptrace-drupal',
     );
 
     return new Reporter(new Client($config, $t));
@@ -32,7 +32,7 @@ it('builds and ships a valid envelope for a thrown exception', function (): void
     expect($env['exception']['type'])->toBe('RuntimeException')
         ->and($env['exception']['message'])->toBe('boom')
         ->and($env['runtime']['name'])->toBe('php')
-        ->and($env['sdk']['name'])->toBe('g8scope-drupal')
+        ->and($env['sdk']['name'])->toBe('bliptrace-drupal')
         ->and($t->sent[0]['endpoint'])->toBe('http://api.test')
         ->and($t->sent[0]['key'])->toBe('test-key');
 });

@@ -1,0 +1,13 @@
+services:
+  # The Bliptrace reporter, built from $settings['bliptrace'] in settings.php.
+  bliptrace.reporter:
+    class: Bliptrace\Drupal\Reporter
+    factory: ['Bliptrace\Drupal\ReporterFactory', 'fromDrupalSettings']
+    arguments: ['@settings']
+
+  # Subscribes to KernelEvents::EXCEPTION and forwards Throwables to the reporter.
+  bliptrace.exception_subscriber:
+    class: Drupal\bliptrace\EventSubscriber\ExceptionSubscriber
+    arguments: ['@bliptrace.reporter']
+    tags:
+      - { name: event_subscriber }
